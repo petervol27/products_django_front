@@ -74,7 +74,7 @@
       const categoryItem = document.createElement('a');
       categoryItem.onclick = () => fetchProducts(category.id);
       categoryItem.href = '#';
-      categoryItem.innerHTML = `<img alt="${category.name}" src="${prodHost}${category.image}" style="width:50px; height:50px;"/><p class="badge bg-primary">${category.name} - Rating: ${category.popularity}★ </p>`;
+      categoryItem.innerHTML = `<img alt="${category.name}" src="${imageUrl}${category.image}" style="width:50px; height:50px;"/><p class="badge bg-primary">${category.name} - Rating: ${category.popularity}★ </p>`;
       categoriesList.appendChild(categoryItem);
     });
   };
@@ -89,7 +89,7 @@
     productList.innerHTML = '';
     products.forEach((product) => {
       const productImage = `<img class="img-fluid " style="width: 250px;
-  height: 250px;" alt="${product.name}" src="${prodHost}${product.image}"/>`;
+  height: 250px;" alt="${product.name}" src="${imageUrl}${product.image}"/>`;
       let categoryHTML =
         '<p class="card-text"><strong>Categories:</strong></p>';
       for (category of product.category_name) {
