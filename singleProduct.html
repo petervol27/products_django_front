@@ -74,7 +74,7 @@
   const editForm = document.getElementById('editProductForm');
   const productTitle = document.getElementById('productTitle');
   const fetchProduct = async () => {
-    const response = await axios.get(`${devHost}/products/${productId}`);
+    const response = await axios.get(`${prodHost}/products/${productId}`);
     const product = response.data;
     productTitle.innerText = product.name;
     const productCard = document.getElementById('productCard');
@@ -112,7 +112,7 @@
   };
   window.onload = fetchProduct();
   const deleteProduct = async () => {
-    const response = await axios.delete(`${devHost}/products/${productId}`);
+    const response = await axios.delete(`${prodHost}/products/${productId}`);
     window.location.href = 'index.html';
     alert('Product deleted succesfully');
   };
@@ -120,7 +120,7 @@
     event.preventDefault();
     const dataForm = new FormData(editForm);
     const response = await axios.put(
-      `${devHost}/products/${productId}`,
+      `${prodHost}/products/${productId}`,
       dataForm
     );
     window.location.href = 'index.html';
