@@ -68,7 +68,7 @@
     const allProducts = document.createElement('a');
     allProducts.href = '#';
     allProducts.onclick = () => fetchProducts(category.id);
-    allProducts.innerHTML = `<img alt="All" src="${prodHost}/images/all_icon.png" style="width:50px; height:50px;"/><p class="badge bg-primary ">All Products</p>`;
+    allProducts.innerHTML = `<img alt="All" src="${imageUrl}/images/all_icon.png" style="width:50px; height:50px;"/><p class="badge bg-primary ">All Products</p>`;
     categoriesList.appendChild(allProducts);
     categories.forEach((category) => {
       const categoryItem = document.createElement('a');
