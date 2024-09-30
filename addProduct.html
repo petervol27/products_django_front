@@ -15,6 +15,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./general.js"></script>
     <title>My Shop</title>
   </head>
   <body class="text-center">
@@ -62,10 +63,7 @@
     const form = document.getElementById('addProductForm');
     const formData = new FormData(form);
     try {
-      const response = await axios.post(
-        'http://127.0.0.1:8000/products/',
-        formData
-      );
+      const response = await axios.post(`${devHost}/products/`, formData);
       window.location.href = 'index.html';
       alert('Product Added Succesfully');
     } catch (error) {

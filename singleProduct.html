@@ -15,6 +15,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./general.js"></script>
     <title>My Shop</title>
   </head>
   <body class="text-center">
@@ -73,9 +74,7 @@
   const editForm = document.getElementById('editProductForm');
   const productTitle = document.getElementById('productTitle');
   const fetchProduct = async () => {
-    const response = await axios.get(
-      `http://127.0.0.1:8000/products/${productId}`
-    );
+    const response = await axios.get(`${devHost}/products/${productId}`);
     const product = response.data;
     productTitle.innerText = product.name;
     const productCard = document.getElementById('productCard');
@@ -113,9 +112,7 @@
   };
   window.onload = fetchProduct();
   const deleteProduct = async () => {
-    const response = await axios.delete(
-      `http://127.0.0.1:8000/products/${productId}`
-    );
+    const response = await axios.delete(`${devHost}/products/${productId}`);
     window.location.href = 'index.html';
     alert('Product deleted succesfully');
   };
@@ -123,7 +120,7 @@
     event.preventDefault();
     const dataForm = new FormData(editForm);
     const response = await axios.put(
-      `http://127.0.0.1:8000/products/${productId}`,
+      `${devHost}/products/${productId}`,
       dataForm
     );
     window.location.href = 'index.html';

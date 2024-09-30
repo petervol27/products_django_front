@@ -15,6 +15,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./general.js"></script>
     <title>My Shop</title>
   </head>
   <body class="text-center">
@@ -61,36 +62,35 @@
   let categoriesList = document.getElementById('categories-list');
 
   const fetchCategories = async () => {
-    const response = await axios.get('http://127.0.0.1:8000/categories/');
+    const response = await axios.get(`${prodHost}/categories/`);
     categories = response.data;
     categoriesList.innerHtml = '';
     const allProducts = document.createElement('a');
     allProducts.href = '#';
     allProducts.onclick = () => fetchProducts(category.id);
-    allProducts.innerHTML =
-      '<img alt="All" src="http://127.0.0.1:8000/images/all_icon.png" style="width:50px; height:50px;"/><p class="badge bg-primary ">All Products</p>';
+    allProducts.innerHTML = `<img alt="All" src="${prodHost}/images/all_icon.png" style="width:50px; height:50px;"/><p class="badge bg-primary ">All Products</p>`;
     categoriesList.appendChild(allProducts);
     categories.forEach((category) => {
       console.log(category);
       const categoryItem = document.createElement('a');
       categoryItem.onclick = () => fetchProducts(category.id);
       categoryItem.href = '#';
-      categoryItem.innerHTML = `<img alt="${category.name}" src="http://127.0.0.1:8000${category.image}" style="width:50px; height:50px;"/><p class="badge bg-primary">${category.name} - Rating: ${category.popularity}★ </p>`;
+      categoryItem.innerHTML = `<img alt="${category.name}" src="${prodHost}${category.image}" style="width:50px; height:50px;"/><p class="badge bg-primary">${category.name} - Rating: ${category.popularity}★ </p>`;
       categoriesList.appendChild(categoryItem);
     });
   };
   const fetchProducts = async (categoryId = null) => {
-    let response = await axios.get('http://127.0.0.1:8000/products/');
+    let response = await axios.get(`${prodHost}/products/`);
     if (categoryId) {
       response = await axios.get(
-        `http://127.0.0.1:8000/products/?category=${categoryId}`
+        `${prodHost}/products/?category=${categoryId}`
       );
     }
     products = response.data;
     productList.innerHTML = '';
     products.forEach((product) => {
       const productImage = `<img class="img-fluid " style="width: 250px;
-  height: 250px;" alt="${product.name}" src="http://127.0.0.1:8000${product.image}"/>`;
+  height: 250px;" alt="${product.name}" src="${prodHost}${product.image}"/>`;
       let categoryHTML =
         '<p class="card-text"><strong>Categories:</strong></p>';
       for (category of product.category_name) {
@@ -114,7 +114,7 @@
     event.preventDefault();
     const searchQuery = document.getElementById('searchProductQuery').value;
     const response = await axios.get(
-      `http://127.0.0.1:8000/products/?search=${searchQuery}`
+      `${prodHost}/products/?search=${searchQuery}`
     );
     const products = response.data;
     productList.innerHTML = '';
