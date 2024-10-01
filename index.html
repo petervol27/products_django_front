@@ -118,6 +118,8 @@
     const products = response.data;
     productList.innerHTML = '';
     products.forEach((product) => {
+      const productImage = `<img class="img-fluid " style="width: 250px;
+      height: 250px;" alt="${product.name}" src="${imageUrl}${product.image}"/>`;
       const productItem = document.createElement('a');
       productItem.className = 'list-group-item list-group-item-action';
       productItem.href = `singleProduct.html?product=${product.id}`;
