@@ -58,6 +58,7 @@
   </body>
 </html>
 <script>
+  // window.onload = checkLogin();
   let productList = document.getElementById('product-list');
   let categoriesList = document.getElementById('categories-list');
 
@@ -99,7 +100,7 @@
       const productItem = document.createElement('a');
       productItem.className = 'list-group-item list-group-item-action';
       productItem.href = `singleProduct.html?product=${product.id}`;
-      productItem.innerHTML = `${productImage} <p><strong>${product.name}</strong>: ${product.description}<br> Price: ${product.price}$ </p> <ul class="list-group w-25 mx-auto mt-3" id="categoryList">${categoryHTML}</ul>`;
+      productItem.innerHTML = `${productImage} <p><strong>${product.name}</strong>: ${product.description}<br> Price: ${product.price}$  </p> <ul class="list-group w-25 mx-auto mt-3" id="categoryList">${categoryHTML}</ul>`;
 
       productList.appendChild(productItem);
     });

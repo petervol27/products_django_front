@@ -48,34 +48,35 @@
       </div>
       <p id="errortxt" class="text-danger mt-3"></p>
     </div>
+    <h1>It's still in the works!!!!!</h1>
+    <a href="./main.html">Go to main page till we fix this</a>
   </body>
 </html>
 <script>
-  const form = document.getElementById('loginForm');
-  const login = async (event) => {
-    event.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    try {
-      const response = await axios.post(
-        `${prodHost}/users/login`,
-        {
-          username: username,
-          password: password,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-      // alert(response.data.message);
-      // window.location.href = 'main.html';
-      console.log(response.data);
-    } catch (error) {
-      console.error(error.response);
-      document.getElementById('errortxt').innerText =
-        'Login failed. Please check your credentials.';
-    }
-    checkLogin();
-  };
-  form.addEventListener('submit', login);
+  // const form = document.getElementById('loginForm');
+  // const login = async (event) => {
+  //   event.preventDefault();
+  //   const username = document.getElementById('username').value;
+  //   const password = document.getElementById('password').value;
+  //   try {
+  //     const response = await axios.post(
+  //       `${devHost}/users/login`,
+  //       {
+  //         username: username,
+  //         password: password,
+  //       },
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     );
+  //     alert(response.data.message);
+  //     window.location.href = 'main.html';
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error.response);
+  //     document.getElementById('errortxt').innerText =
+  //       'Login failed. Please check your credentials.';
+  //   }
+  // };
+  // form.addEventListener('submit', login);
 </script>

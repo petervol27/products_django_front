@@ -84,6 +84,7 @@
                                 <p class="card-text">Price: ${product.price}$</p>
                                 <a class="btn btn-danger" id="deleteBtn">Delete Product</a>
                                 <a class="btn btn-info ms-2" data-bs-toggle="modal" data-bs-target="#editModal">Edit Product</a>
+                                <a class="btn btn-primary" id="addToCartBtn">Add to Cart</a>
                                 <ul class="list-group w-25 mx-auto mt-3" id="categoryList"></ul>
                               </div>`;
     editForm.innerHTML = ` <label for="name">Name:</label
@@ -102,6 +103,9 @@
     document
       .getElementById('deleteBtn')
       .addEventListener('click', deleteProduct);
+    document
+      .getElementById('addToCartBtn')
+      .addEventListener('click', addToCart);
     const categoryList = document.getElementById('categoryList');
     let categoryHTML = '<p class="card-text"><strong>Categories:</strong></p>';
     for (category of product.category_name) {
@@ -127,4 +131,11 @@
     alert('Product Editted!');
   };
   editForm.addEventListener('submit', editProduct);
+  const addToCart = async () => {
+    const response = await axios.post(`${prodHost}/carts/add/newuser`, {
+      product_id: productId,
+      quantity: 1,
+    });
+    console.log(response.data);
+  };
 </script>
