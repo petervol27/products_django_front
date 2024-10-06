@@ -16,124 +16,35 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./general.js"></script>
-    <title>My Shop</title>
+    <title>Login</title>
   </head>
   <body class="text-center">
-    <nav class="navbar bg-dark navbar-expand-sm navbar-dark">
-      <div class="container-fluid">
-        <a href="./index.html" class="navbar-brand">My Shop</a>
-
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a href="./addProduct.html" class="nav-link">Add Product</a>
-          </li>
-        </ul>
+    <div class="d-flex justify-content-center align-items-center p-5 m-5">
+      <div class="container border mt-5 shadow px-4 py-4 w-50">
+        <h1 class="text-decoration-underline">Login</h1>
+        <form id="loginForm" class="w-50 mx-auto mt-3">
+          <div>
+            <label for="username" class="form-label">Email:</label>
+            <input
+              class="form-control"
+              id="username"
+              name="username"
+              type="text"
+            />
+          </div>
+          <div>
+            <label for="password" class="form-label">Password:</label>
+            <input
+              class="form-control"
+              id="password"
+              name="password"
+              type="password"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Login</button>
+        </form>
       </div>
-    </nav>
-    <div class="container w-25 mt-3">
-      <form class="d-flex" id="searchProductForm">
-        <input
-          class="form-control me-2"
-          type="text"
-          placeholder="Search for Product"
-          id="searchProductQuery"
-        />
-        <button class="btn btn-info" type="submit" id="searchProductBtn">
-          Search
-        </button>
-      </form>
-    </div>
-    <div
-      class="container mt-3 d-flex justify-content-center align-items-center"
-    >
-      <div class="w-50 align-self-start">
-        <h2>Product List:</h2>
-        <div
-          class="list-group flex-row gap-3 mt-3 align-items-center justify-content-center"
-          id="categories-list"
-        ></div>
-        <ul class="list-group" id="product-list"></ul>
-      </div>
+      <p id="errortxt" class="text-danger"></p>
     </div>
   </body>
 </html>
-<script>
-  let productList = document.getElementById('product-list');
-  let categoriesList = document.getElementById('categories-list');
-
-  const fetchCategories = async () => {
-    const response = await axios.get(`${prodHost}/categories/`);
-    categories = response.data;
-    categoriesList.innerHtml = '';
-    const allProducts = document.createElement('a');
-    allProducts.href = '#';
-    allProducts.onclick = () => fetchProducts(category.id);
-    allProducts.innerHTML = `<img alt="All" src="${imageUrl}/images/all_icon.png" style="width:50px; height:50px;"/><p class="badge bg-primary ">All Products</p>`;
-    categoriesList.appendChild(allProducts);
-    categories.forEach((category) => {
-      const categoryItem = document.createElement('a');
-      categoryItem.onclick = () => fetchProducts(category.id);
-      categoryItem.href = '#';
-      categoryItem.innerHTML = `<img alt="${category.name}" src="${imageUrl}${category.image}" style="width:50px; height:50px;"/><p class="badge bg-primary">${category.name} - Rating: ${category.popularity}★ </p>`;
-      categoriesList.appendChild(categoryItem);
-    });
-  };
-  const fetchProducts = async (categoryId = null) => {
-    let response = await axios.get(`${prodHost}/products/`);
-    if (categoryId) {
-      response = await axios.get(
-        `${prodHost}/products/?category=${categoryId}`
-      );
-    }
-    products = response.data;
-    productList.innerHTML = '';
-    products.forEach((product) => {
-      const productImage = `<img class="img-fluid " style="width: 250px;
-  height: 250px;" alt="${product.name}" src="${imageUrl}${product.image}"/>`;
-      let categoryHTML =
-        '<p class="card-text"><strong>Categories:</strong></p>';
-      for (category of product.category_name) {
-        const currentHTML = `<li class="list-group-item">${category}</li>`;
-        categoryHTML += currentHTML;
-      }
-      const productItem = document.createElement('a');
-      productItem.className = 'list-group-item list-group-item-action';
-      productItem.href = `singleProduct.html?product=${product.id}`;
-      productItem.innerHTML = `${productImage} <p><strong>${product.name}</strong>: ${product.description}<br> Price: ${product.price}$ </p> <ul class="list-group w-25 mx-auto mt-3" id="categoryList">${categoryHTML}</ul>`;
-
-      productList.appendChild(productItem);
-    });
-  };
-  const fetchAll = async () => {
-    await fetchCategories();
-    await fetchProducts();
-  };
-  window.onload = fetchAll();
-  const searchProduct = async (event) => {
-    event.preventDefault();
-    const searchQuery = document.getElementById('searchProductQuery').value;
-    const response = await axios.get(
-      `${prodHost}/products/?search=${searchQuery}`
-    );
-    const products = response.data;
-    productList.innerHTML = '';
-    products.forEach((product) => {
-      const productImage = `<img class="img-fluid " style="width: 250px;
-  height: 250px;" alt="${product.name}" src="${imageUrl}${product.image}"/>`;
-      let categoryHTML =
-        '<p class="card-text"><strong>Categories:</strong></p>';
-      for (category of product.category_name) {
-        const currentHTML = `<li class="list-group-item">${category}</li>`;
-        categoryHTML += currentHTML;
-      }
-      const productItem = document.createElement('a');
-      productItem.className = 'list-group-item list-group-item-action';
-      productItem.href = `singleProduct.html?product=${product.id}`;
-      productItem.innerHTML = `${productImage} <p><strong>${product.name}</strong>: ${product.description}<br> Price: ${product.price}$ </p> <ul class="list-group w-25 mx-auto mt-3" id="categoryList">${categoryHTML}</ul>`;
-      productList.appendChild(productItem);
-    });
-  };
-  document
-    .getElementById('searchProductForm')
-    .addEventListener('submit', searchProduct);
-</script>
