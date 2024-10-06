@@ -19,12 +19,14 @@
     <title>Login</title>
   </head>
   <body class="text-center">
-    <div class="d-flex justify-content-center align-items-center p-5 m-5">
+    <div
+      class="d-flex justify-content-center align-items-center p-5 m-5 flex-column"
+    >
       <div class="container border mt-5 shadow px-4 py-4 w-50">
         <h1 class="text-decoration-underline">Login</h1>
         <form id="loginForm" class="w-50 mx-auto mt-3">
           <div>
-            <label for="username" class="form-label">Email:</label>
+            <label for="username" class="form-label">Username:</label>
             <input
               class="form-control"
               id="username"
@@ -44,7 +46,36 @@
           <button type="submit" class="btn btn-primary mt-3">Login</button>
         </form>
       </div>
-      <p id="errortxt" class="text-danger"></p>
+      <p id="errortxt" class="text-danger mt-3"></p>
     </div>
   </body>
 </html>
+<script>
+  const form = document.getElementById('loginForm');
+  const login = async (event) => {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    try {
+      const response = await axios.post(
+        `${prodHost}/users/login`,
+        {
+          username: username,
+          password: password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      // alert(response.data.message);
+      // window.location.href = 'main.html';
+      console.log(response.data);
+    } catch (error) {
+      console.error(error.response);
+      document.getElementById('errortxt').innerText =
+        'Login failed. Please check your credentials.';
+    }
+    checkLogin();
+  };
+  form.addEventListener('submit', login);
+</script>
