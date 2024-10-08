@@ -1,4 +1,4 @@
-const prodHost = 'https://my-shop-django.onrender.com';
+const prodHost = 'https://products-shop-17p6.onrender.com';
 
 const devHost = 'http://127.0.0.1:8000';
 
