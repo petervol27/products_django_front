@@ -92,7 +92,7 @@
     productList.innerHTML = '';
     products.forEach((product) => {
       const productImage = `<img class="img-fluid " style="width: 250px;
-  height: 250px;" alt="${product.name}" src="${prodHost}${product.image}"/>`;
+  height: 250px;" alt="${product.name}" src="${prodHost}/static/${product.image}"/>`;
       let categoryHTML =
         '<p class="card-text"><strong>Categories:</strong></p>';
       for (category of product.category_name) {
