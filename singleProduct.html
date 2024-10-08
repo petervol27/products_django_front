@@ -119,7 +119,7 @@
   window.onload = fetchProduct();
   const deleteProduct = async () => {
     const response = await axios.delete(`${prodHost}/products/${productId}`);
-    window.location.href = 'index.html';
+    window.location.href = 'main.html';
     alert('Product deleted succesfully');
   };
   const editProduct = async (event) => {
@@ -129,7 +129,7 @@
       `${prodHost}/products/${productId}`,
       dataForm
     );
-    window.location.href = 'index.html';
+    window.location.href = 'main.html';
     alert('Product Editted!');
   };
   editForm.addEventListener('submit', editProduct);
