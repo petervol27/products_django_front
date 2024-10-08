@@ -76,7 +76,7 @@
   const editForm = document.getElementById('editProductForm');
   const productTitle = document.getElementById('productTitle');
   const fetchProduct = async () => {
-    const response = await axios.get(`${prodHost}/products/${productId}`);
+    const response = await axios.get(`${HOST}/products/${productId}`);
     const product = response.data;
     productTitle.innerText = product.name;
     const productCard = document.getElementById('productCard');
