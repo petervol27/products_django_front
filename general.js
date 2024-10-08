@@ -1,6 +1,5 @@
-// const prodHost = 'https://products-shop-17p6.onrender.com';
-
-// const devHost = 'http://127.0.0.1:8000';
+//  prodHost = 'https://products-shop-17p6.onrender.com';
+//  devHost = 'http://127.0.0.1:8000';
 const HOST = 'https://products-shop-17p6.onrender.com';
 // const checkLogin = async () => {
 //   try {
