@@ -118,23 +118,20 @@
   };
   window.onload = fetchProduct();
   const deleteProduct = async () => {
-    const response = await axios.delete(`${prodHost}/products/${productId}`);
+    const response = await axios.delete(`${HOST}/products/${productId}`);
     window.location.href = 'main.html';
     alert('Product deleted succesfully');
   };
   const editProduct = async (event) => {
     event.preventDefault();
     const dataForm = new FormData(editForm);
-    const response = await axios.put(
-      `${prodHost}/products/${productId}`,
-      dataForm
-    );
+    const response = await axios.put(`${HOST}/products/${productId}`, dataForm);
     window.location.href = 'main.html';
     alert('Product Editted!');
   };
   editForm.addEventListener('submit', editProduct);
   const addToCart = async () => {
-    const response = await axios.post(`${prodHost}/carts/add/newuser`, {
+    const response = await axios.post(`${HOST}/carts/add/newuser`, {
       product_id: productId,
       quantity: 1,
     });

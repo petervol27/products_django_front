@@ -1,7 +1,7 @@
-const prodHost = 'https://products-shop-17p6.onrender.com';
+// const prodHost = 'https://products-shop-17p6.onrender.com';
 
-const devHost = 'http://127.0.0.1:8000';
-
+// const devHost = 'http://127.0.0.1:8000';
+const HOST = 'https://products-shop-17p6.onrender.com';
 // const checkLogin = async () => {
 //   try {
 //     const response = await axios.get(`${devHost}/users/check_login`, {
